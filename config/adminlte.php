@@ -464,6 +464,19 @@ return [
                     'icon' => 'fas fa-fw fa-headset',
                 ],
             ],
+
+        ],
+        [
+            'text' => 'Premios/ Reconocimientos',
+            'url' => 'reconocimientos',
+            'icon' => 'fas fa-fw fa-trophy',
+        ],
+        [
+            'text' => 'PDF/ Imprimir',
+            'url' => 'generate-pdf-form',
+            // 'url' => 'generate-pdf',
+            // 'url' => 'pdfprinters',
+            'icon' => 'fas fa-fw fa-print',
         ],
     ],
 

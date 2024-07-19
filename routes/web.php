@@ -3,7 +3,8 @@
 use App\Http\Controllers\ArticulogeneralController;
 use App\Http\Controllers\ArticulorevistaController;
 use App\Http\Controllers\ContactoController;
-use App\Mail\HelloMail;
+use App\Http\Controllers\PdfprinterController;
+// use App\Mail\HelloMail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DatospersonaController;
 use App\Http\Controllers\DatospersonbController;
@@ -19,8 +20,14 @@ use App\Http\Controllers\FuncadminacadController;
 use App\Http\Controllers\LibropublicadoController;
 use App\Http\Controllers\TextopublicadoController;
 use App\Http\Controllers\TutortribunalController;
+// use App\Http\Controllers\Printpdfcontroller;
 use App\Http\Controllers\TrabproyinvconcluidoController;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\ReconocimientoController;
+use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\PDFController;
+use App\Models\Datospersona;
+
 
 // Route::get('/', function () {
 
@@ -36,11 +43,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('datospersonas', DatospersonaController::class);
 // Route::get('/datospersonas/pdf', [DatospersonaController::class, 'generarPDF'])->name('datospersonas.pdf');
 
+Route::resource('articulogenerals', ArticulogeneralController::class);
+Route::resource('articulorevistas', ArticulorevistaController::class);
+Route::resource('contactos', ContactoController::class);
+Route::resource('datospersonas', DatospersonaController::class);
 Route::resource('datospersonbs', DatospersonbController::class);
-
 Route::resource('expdocentes', ExpdocenteController::class);
 Route::resource('expoconferencias', ExpoconferenciaController::class);
 Route::resource('expoeventos', ExpoeventoController::class);
@@ -51,9 +60,31 @@ Route::resource('formpostgrados', FormpostgradoController::class);
 Route::resource('formprofesionals', FormprofesionalController::class);
 Route::resource('funcadminacads', FuncadminacadController::class);
 Route::resource('libropublicados', LibropublicadoController::class);
+Route::resource('reconocimientos', ReconocimientoController::class);
 Route::resource('textopublicados', TextopublicadoController::class);
 Route::resource('tutortribunals', TutortribunalController::class);
 Route::resource('trabproyinvconcluidos', TrabproyinvconcluidoController::class);
-Route::resource('contactos', ContactoController::class);
-Route::resource('articulogenerals', ArticulogeneralController::class);
-Route::resource('articulorevistas', ArticulorevistaController::class);
+// Route::resource('pdfprinters', PdfprinterController::class);
+
+// Route::get('/generate-pdf', [PDFController::class, 'generatePDF']);
+
+// Route::get('/generate-pdf-form', function () {
+//     $personas = Datospersona::all(); // Obtener todos los registros de Datospersona
+//     return view('pdf_form', compact('personas'));
+// });
+
+// Route::get('/generate-pdf/{nombre}/{apellidoPaterno}/{apellidoMaterno}', [PDFController::class, 'generatePDF']);
+
+// Route::get('/generate-pdf-form', function () {
+//     $personas = Datospersona::all(); // Obtener todos los registros de Datospersona
+//     return view('pdf_form', compact('personas'));
+// });
+
+// Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF']);
+
+Route::get('/generate-pdf-form', function () {
+    $personas = \App\Models\Datospersona::all(); // Obtener todos los registros de Datospersona
+    return view('pdf_form', compact('personas'));
+});
+
+Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF']);
