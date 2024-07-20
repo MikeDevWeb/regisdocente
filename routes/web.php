@@ -20,7 +20,7 @@ use App\Http\Controllers\FuncadminacadController;
 use App\Http\Controllers\LibropublicadoController;
 use App\Http\Controllers\TextopublicadoController;
 use App\Http\Controllers\TutortribunalController;
-// use App\Http\Controllers\Printpdfcontroller;
+use Illuminate\Http\Request; // Importa la clase Request
 use App\Http\Controllers\TrabproyinvconcluidoController;
 use App\Http\Controllers\ReconocimientoController;
 use Illuminate\Support\Facades\Auth;
@@ -66,25 +66,38 @@ Route::resource('tutortribunals', TutortribunalController::class);
 Route::resource('trabproyinvconcluidos', TrabproyinvconcluidoController::class);
 // Route::resource('pdfprinters', PdfprinterController::class);
 
-// Route::get('/generate-pdf', [PDFController::class, 'generatePDF']);
-
+// Ruta para mostrar el formulario
 // Route::get('/generate-pdf-form', function () {
 //     $personas = Datospersona::all(); // Obtener todos los registros de Datospersona
 //     return view('pdf_form', compact('personas'));
 // });
 
-// Route::get('/generate-pdf/{nombre}/{apellidoPaterno}/{apellidoMaterno}', [PDFController::class, 'generatePDF']);
+// // Ruta para manejar la solicitud POST del formulario y redirigir a la generación del PDF
+// Route::post('/generate-pdf', function (Request $request) {
+//     $id = $request->input('persona');
+//     return redirect()->route('generate.pdf', ['id' => $id]);
+// })->name('generate.pdf.post');
 
-// Route::get('/generate-pdf-form', function () {
-//     $personas = Datospersona::all(); // Obtener todos los registros de Datospersona
-//     return view('pdf_form', compact('personas'));
-// });
+// // Ruta para generar el PDF con el ID de la persona
+// Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF'])->name('generate.pdf');
 
-// Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF']);
+// Ruta para el formulario
 
-Route::get('/generate-pdf-form', function () {
-    $personas = \App\Models\Datospersona::all(); // Obtener todos los registros de Datospersona
+Route::get('/generate-pdf', [PDFController::class, 'generatePDF']);
+
+Route::get('/pdf-form', function () {
+    $personas = Datospersona::all();
     return view('pdf_form', compact('personas'));
 });
 
+// Ruta para generar el PDF
 Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF']);
+
+
+// FUNCIONA EL DE ABAJO
+// Route::get('/generate-pdf-form', function() {
+//     $personas = Datospersona::all();
+//     return view('pdf_form', compact('personas'));
+// });
+
+// Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF'])->name('generate-pdf');
