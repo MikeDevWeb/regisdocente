@@ -2,35 +2,35 @@
 @extends('adminlte::page')
 
 @section('template_title')
-    {{ $reconocimiento->name ?? __('Show') . " " . __('Reconocimiento') }}
+    {{ $reconocimiento->name ?? __('Revisar') . " " . __('Reconocimiento') }}
 @endsection
 
 @section('content')
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="card text-sm">
+                    <div class="card-header text-sm" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Reconocimiento</span>
+                            <span class="card-title text-sm">{{ __('Revisar') }} Reconocimiento</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('reconocimientos.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
-                    <div class="card-body bg-white">
+                    <div class="card-body bg-white text-sm">
 
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Reconocimiento:</strong>
+                                    <strong>Reconocimientos:</strong>
                                     {{ $reconocimiento->reconocimiento }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Institucion:</strong>
+                                    <strong>Institución:</strong>
                                     {{ $reconocimiento->institucion }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Anio:</strong>
+                                    <strong>Año:</strong>
                                     {{ $reconocimiento->anio }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
@@ -38,12 +38,16 @@
                                     {{ $reconocimiento->actividad }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Datospersona Id:</strong>
-                                    {{ $reconocimiento->datospersona_id }}
+                                    <strong>Docente:</strong>
+                                    {{ $reconocimiento->datospersona->nombre }} {{ $reconocimiento->datospersona->apellidoPaterno }} {{ $reconocimiento->datospersona->apellidoMaterno }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>User Id:</strong>
-                                    {{ $reconocimiento->user_id }}
+                                    <strong>Registrado por:</strong>
+                                    {{ $reconocimiento->user->name }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Registrado:</strong>
+                                    {{ $reconocimiento->fecharegistro }}
                                 </div>
 
                     </div>

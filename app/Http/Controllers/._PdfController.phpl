@@ -1,0 +1,29 @@
+<?php
+// app/Http/Controllers/PdfController.php
+// namespace App\Http\Controllers;
+
+// use App\Models\Datospersona;
+// use Illuminate\Http\Request;
+// use App\Models\Persona;
+
+// class PdfController extends Controller
+// {
+//     public function index()
+//     {
+//         $datospersonas = Datospersona::all();
+//         return view('pdf.index', compact('datospersonas'));
+//     }
+
+//     public function generatePdf(Request $request)
+//     {
+//         $id = $request->input('id');
+//         $datospersona = Datospersona::with([
+//             'articulogenerals', 'articulorevistas', 'contactos', 'datospersonbs',
+//             'expdocentes', 'expoconferencias', 'expoeventos', 'exposeminarios',
+//             'expprograrels', 'formcursos', 'formpostgrados', 'formprofesionals',
+//             'funcadminacads', 'libropublicados', 'reconocimientos',
+//             'textopublicados', 'tutortribunals', 'trabproyinvconcluidos'
+//         ])->findOrFail($id);
+//         return view('pdf.view', compact('datospersona'));
+//     }
+// }

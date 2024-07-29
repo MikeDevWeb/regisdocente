@@ -34,6 +34,19 @@
             "Tests\\": "tests/"
         }
     },
+
+
+
+    "files": [
+        "app/helpers.php"
+    ],
+    "psr-4": {
+        "Fpdf\\": "vendor/setasign/fpdf/src/Fpdf.php"
+    },
+
+
+
+
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

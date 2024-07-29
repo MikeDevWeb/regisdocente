@@ -473,7 +473,7 @@ return [
         ],
         [
             'text' => 'PDF/ Imprimir',
-            'url' => 'pdf-form',
+            'url' => 'select-persona',
             // 'url' => 'generate-pdf',
             // 'url' => 'pdfprinters',
             'icon' => 'fas fa-fw fa-print',

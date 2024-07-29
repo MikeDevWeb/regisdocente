@@ -25,7 +25,7 @@ use App\Http\Controllers\TrabproyinvconcluidoController;
 use App\Http\Controllers\ReconocimientoController;
 use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Facades\Mail;
-use App\Http\Controllers\PDFController;
+use App\Http\Controllers\PdfController;
 use App\Models\Datospersona;
 
 
@@ -43,7 +43,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/datospersonas/pdf', [DatospersonaController::class, 'generarPDF'])->name('datospersonas.pdf');
 
 Route::resource('articulogenerals', ArticulogeneralController::class);
 Route::resource('articulorevistas', ArticulorevistaController::class);
@@ -64,34 +63,14 @@ Route::resource('reconocimientos', ReconocimientoController::class);
 Route::resource('textopublicados', TextopublicadoController::class);
 Route::resource('tutortribunals', TutortribunalController::class);
 Route::resource('trabproyinvconcluidos', TrabproyinvconcluidoController::class);
-// Route::resource('pdfprinters', PdfprinterController::class);
 
-// Ruta para mostrar el formulario
-// Route::get('/generate-pdf-form', function () {
-//     $personas = Datospersona::all(); // Obtener todos los registros de Datospersona
-//     return view('pdf_form', compact('personas'));
-// });
+// Route::get('/select-persona', [PdfController::class, 'selectPersona'])->name('select_persona');
+// Route::post('/generar-html', [PdfController::class, 'generarHtml'])->name('generar_html');
 
-// // Ruta para manejar la solicitud POST del formulario y redirigir a la generación del PDF
-// Route::post('/generate-pdf', function (Request $request) {
-//     $id = $request->input('persona');
-//     return redirect()->route('generate.pdf', ['id' => $id]);
-// })->name('generate.pdf.post');
+Route::get('/select-persona', [PdfController::class, 'selectPersona'])->name('select_persona');
+Route::post('/generar-html', [PdfController::class, 'generarHtml'])->name('generar_html');
 
-// // Ruta para generar el PDF con el ID de la persona
-// Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF'])->name('generate.pdf');
 
-// Ruta para el formulario
-
-Route::get('/generate-pdf', [PDFController::class, 'generatePDF']);
-
-Route::get('/pdf-form', function () {
-    $personas = Datospersona::all();
-    return view('pdf_form', compact('personas'));
-});
-
-// Ruta para generar el PDF
-Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF']);
 
 
 // FUNCIONA EL DE ABAJO
